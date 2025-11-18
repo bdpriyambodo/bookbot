@@ -12,6 +12,9 @@ def get_num_words(filepath):
     total_word = len(text_book.split())
     return total_word
 
+def sort_on(items):
+    return items["count"]
+
 def get_num_char(filepath):
     text_book = get_book_text(filepath).lower()
     chars = list(text_book)
@@ -19,15 +22,27 @@ def get_num_char(filepath):
     char_count = {}
     for c in unique_chars:
         char_count[c] = chars.count(c)
-    return char_count
+    # return char_count
     # print(f"Total characters: {len(chars)}")
     # print(f"Total unique characters: {len(unique_chars)}, All: {unique_chars}")
     # print(char_count)
 
+    char_count_list = []
+    for c in char_count:
+        # print(c,char_count[c])
+        char_count_list.append({"char":c, "count":char_count[c]})
+        # print(char_count_list)
+
+    char_count_list.sort(reverse=True, key=sort_on)
+    return char_count_list
+
+    # return char_count_list.sort(reverse=True, key = sort_on)
+    # print(char_count_list_sort)
+    # print(a)
 
 # TEST
-# filepath = "books/frankenstein.txt"
-# get_num_char(filepath)
+filepath = "books/frankenstein.txt"
+get_num_char(filepath)
 
 
 
