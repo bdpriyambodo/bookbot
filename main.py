@@ -1,6 +1,7 @@
 from stats import get_num_words, get_num_char
+import sys
 
-filepath = "books/frankenstein.txt"
+# filepath = "books/frankenstein.txt"
 
 def main (filepath):
     # print(f"Found {get_num_words(filepath)} total words")
@@ -18,5 +19,11 @@ def main (filepath):
         if c['char'].isalpha():
             print(f"{c['char']}: {c['count']}")
 
-main(filepath)
+
+if len(sys.argv) != 2:
+    print("Usage: python3 main.py <path_to_book>")
+    sys.exit(1)
+else:
+    filepath = sys.argv[1]
+    main(filepath)
 
